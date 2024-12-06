@@ -1,0 +1,31 @@
+<div class="jumbotron text-center">
+    <h1 class="display-4">Welcome to EventMate</h1>
+    <p class="lead">Create, manage, and join events with ease</p>
+</div>
+
+<div class="row mt-4">
+    <% if (typeof events !== 'undefined' && events.length > 0) { %>
+        <% events.forEach(event => { %>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= event.title %></h5>
+                        <p class="card-text"><%= event.description %></p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                Location: <%= event.location %><br>
+                                Date: <%= event.date.toLocaleDateString() %><br>
+                                Organizer: <%= event.organizer.name %>
+                            </small>
+                        </p>
+                        <a href="/events/<%= event._id %>" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <div class="col-12 text-center">
+            <p>No events available at the moment.</p>
+        </div>
+    <% } %>
+</div>
